@@ -1,0 +1,46 @@
+
+
+const Login = ({handleState}:any) => {
+  const handleLogin = () => {
+    const enteredEmail = 'user@example.com'; // Replace with the user's input
+    const enteredPhoneNumber = '1234567890'; // Replace with the user's input
+
+    for (let i = 0; i < localStorage.length; i++) {
+      const userToken = localStorage.key(i);
+
+      if (userToken) {
+        const userDataString = localStorage.getItem(userToken);
+
+        if (userDataString) {
+          const userData = JSON.parse(userDataString);
+
+          if (userData.email === enteredEmail && userData.phoneNumber === enteredPhoneNumber) {
+            // Successful login
+            alert('Login Successful!');
+            return;
+          }
+        }
+      }
+    }
+
+    // Login failed
+    alert('Login Failed. Incorrect credentials.');
+  }
+
+  return (
+    <div className="bg-[#E4DBF5] p-[40px] mt-[130px] ml-[70px] border-[grey] border-[1px] round-[5px] w-[390px] h-[340px] shadow-[rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;]">
+        <div className="pb-[20px]">
+        <div className="pb-[10px] text-[black] text-[18px] font-[15px]">Email or Phone Number</div>
+        <input className="border-[grey] border-[1px] p-[20px] w-[300px] h-[30px]" type="text" placeholder="Email or Phone Number" ></input>
+        </div>
+        <div className="pb-[15px]">
+        <div className="pb-[10px] text-[black] text-[18px] font-[15px]">Password</div>
+        <input className="border-[grey] border-[1px] p-[20px] w-[300px] h-[30px]" type="text" placeholder="Password"></input>
+        </div>
+        <button className="ml-[240px] pb-[15px]" onClick={handleState}>Register</button>
+        <button className="border-[grey] border-[1px] round-[5px] pl-[20px] pt-[3px] pr-[20px] pb-[6px] bg-[#FBA31A] text-[20px] hover:text-[white] font-[20px]" onClick={handleLogin}>Login</button>
+    </div>
+  )
+}
+
+export default Login
