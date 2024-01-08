@@ -8,7 +8,7 @@ const App = () => {
 
 
   return (
-    <div className='container bg-[#7942DF] w-100% h-[651px]'>
+    <div className='container bg-[#7942DF] w-[100%] h-[651px]'>
       {active ? <Register handleState={() => setActive(false)} /> : <Login handleState={handleState} />}
     </div>
   )

@@ -1,22 +1,24 @@
-import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react';
 
 const Register = ({handleState}:any) => {
+  const [email,setEmail] = useState('')
+  const [password,setPassword] = useState('')
   const handleRegister = () => {
     const registrationData = {
-      email: 'user@gmail.com',
+      email: email,
       phoneNumber: '1234567890',
       username: 'user123',
-      password: 'password123',
+      password: password,
     };
-    const userToken = uuidv4();
-    localStorage.setItem(userToken, JSON.stringify(registrationData));
+   
+    localStorage.setItem('user', JSON.stringify(registrationData));
     handleState();
   }
   return (
     <div className="bg-[#E4DBF5] pl-[40px] pr-[40px] pb-[40px] pt-[20px] border-[grey] border-[1px] round-[5px] w-[550px] h-[590px] shadow-[rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;]">
         <div className="pb-[20px]">
         <div className="pb-[10px] text-[black] text-[18px] font-[15px]">Email Adress</div>
-        <input className="border-[grey] border-[1px] p-[20px] w-[470px] h-[30px]" type="text" placeholder="Email Adress" ></input>
+        <input onChange={(e) => setEmail(e.target.value) } className="border-[grey] border-[1px] p-[20px] w-[470px] h-[30px]" type="text" placeholder="Email Adress" ></input>
         </div>
         <div className="pb-[20px]">
         <div className="pb-[10px] text-[black] text-[18px] font-[15px]">Phone Number <small>optional</small></div>
@@ -28,7 +30,7 @@ const Register = ({handleState}:any) => {
         </div>
         <div className="pb-[20px]">
         <div className="pb-[10px] text-[black] text-[18px] font-[15px]">Password</div>
-        <input className="border-[grey] border-[1px] p-[20px] w-[470px] h-[30px]" type="text" placeholder="Password" ></input>
+        <input onChange={(e) => setPassword(e.target.value) } className="border-[grey] border-[1px] p-[20px] w-[470px] h-[30px]" type="text" placeholder="Password" ></input>
         </div>
         <div className="pb-[15px]">
         <div className="pb-[10px] text-[black] text-[18px] font-[15px]">Confirm Password*</div>
